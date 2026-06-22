@@ -1,28 +1,23 @@
-FROM node:20-alpine AS deps
-WORKDIR /app
+name: Service CI/CD
 
-COPY shared/package.json ./shared/package.json
-COPY services/gemini-ai-service/package.json ./services/gemini-ai-service/package.json
+on:
+  push:
+    branches:
+      - dev
+      - master
+  workflow_dispatch:
 
-WORKDIR /app/shared
-RUN npm install --omit=dev
-
-WORKDIR /app/services/gemini-ai-service
-RUN npm install --omit=dev
-
-FROM node:20-alpine AS runtime
-ENV NODE_ENV=production
-WORKDIR /app
-
-COPY --chown=node:node shared ./shared
-COPY --chown=node:node services/gemini-ai-service ./services/gemini-ai-service
-COPY --from=deps --chown=node:node /app/shared/node_modules ./shared/node_modules
-COPY --from=deps --chown=node:node /app/services/gemini-ai-service/node_modules ./services/gemini-ai-service/node_modules
-
-RUN rm -rf /usr/local/lib/node_modules/npm \
-    && rm -f /usr/local/bin/npm /usr/local/bin/npx
-
-USER node
-WORKDIR /app/services/gemini-ai-service
-
-CMD ["node", "src/worker.js"]
+jobs:
+  service:
+    uses: PipelineIQproject/pipeline_main/.github/workflows/reusable-node-service-ci.yml@dev
+    with:
+      service_name: gemini-ai-service
+      image_name: final_capstone-gemini-ai-service
+      dockerfile: services/gemini-ai-service/Dockerfile
+      node_project_dir: services/gemini-ai-service
+      chart_path: gemini-ai-service
+      container_port: "8080"
+      smoke_mode: command
+      sonar_organization: pipelineiqproject
+      sonar_project_key: pipelineiq-gemini-ai-service
+    secrets: inherit
