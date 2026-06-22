@@ -5,7 +5,7 @@ Independent repository for the PipelineIQ Gemini/Azure AI worker.
 ## Build
 
 ```bash
-docker build -t <acr-login-server>/final_capstone-gemini-ai-service:local -f services/gemini-ai-service/Dockerfile .
+docker build -t <acr-login-server>/final_capstone-gemini-ai-service:local -f services/gemini-ai-service /Dockerfile .
 ```
 
 ## Local Run 
