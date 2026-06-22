@@ -10,7 +10,7 @@ docker build -t <acr-login-server>/final_capstone-gemini-ai-service:local -f ser
 
 ## Local Run 
 
-This service expects PipelineIQ environment variables from Kubernetes ConfigMap and Key Vault secrets.
+This service expects PipelineIQ environment variables from Kubernetes ConfigMap and Key Vault secrets. 
  
 ```bash
 cd services/gemini-ai-service
