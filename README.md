@@ -7,7 +7,7 @@ Independent repository for the PipelineIQ Gemini/Azure AI worker.
 ```bash
 docker build -t <acr-login-server>/final_capstone-gemini-ai-service:local -f services/gemini-ai-service /Dockerfile .
 ```
-
+  
 ## Local Run 
 
 This service expects PipelineIQ environment variables from Kubernetes ConfigMap and Key Vault secrets. 
