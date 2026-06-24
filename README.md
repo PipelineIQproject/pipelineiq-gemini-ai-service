@@ -1,4 +1,4 @@
-     # PipelineIQ AI Service
+      # PipelineIQ AI Service
 
 Independent repository for the PipelineIQ Gemini/Azure AI worker.
 
