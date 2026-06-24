@@ -1,6 +1,6 @@
        # PipelineIQ AI Service
 
-Independent repository for the PipelineIQ Gemini/Azure AI worker.
+Independent repository for the PipelineIQ Gemini/Azure AI worker.  
 
 ## Build
 
